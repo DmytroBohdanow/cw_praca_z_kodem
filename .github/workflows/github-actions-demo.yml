@@ -10,9 +10,13 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
+      - name: Set up env
+        run: py -3 -m venv .venv
+      - name: Run env
+        run: . .venv/bin/activate
       - name: Install dependencies
         run: python -m pip install --upgrade pip pytest-pylint flask
       - name: Check python version
         run: python --version
       - name: Run server
-        run: python -m app
+        run: flask --app app run
